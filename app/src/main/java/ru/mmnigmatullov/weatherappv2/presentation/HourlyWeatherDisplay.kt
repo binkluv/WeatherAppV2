@@ -23,8 +23,7 @@ import java.time.format.DateTimeFormatter
 fun HourlyWeatherDisplay(
     weatherData: WeatherData,
     modifier: Modifier = Modifier,
-    textColor: Color = Color.White,
-    backgroundColor: Color
+    textColor: Color = Color.White
 ){
     val formattedTime = remember(weatherData){
         weatherData.time.format(

@@ -11,7 +11,6 @@ import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.ui.Alignment
@@ -53,7 +52,8 @@ class MainActivity : ComponentActivity() {
                             backgroundColor = DeepViolet
                         )
                         Spacer(modifier = Modifier.height(16.dp))
-                        WeatherForecast(state = viewModel.state, shape = RoundedCornerShape(16.dp))
+                        WeatherForecast(state = viewModel.state)
+
                     }
                     if (viewModel.state.isLoading){
                         CircularProgressIndicator(

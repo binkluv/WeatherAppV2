@@ -6,19 +6,20 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ru.mmnigmatullov.weatherappv2.presentation.ui.theme.DeepViolet
+import androidx.compose.foundation.layout.Column
+import androidx.compose.runtime.Composable
 
 @Composable
-fun WeatherForecast(
+fun WeatherForecastDaily(
     state: WeatherState,
     modifier: Modifier = Modifier
-) {
+){
     state.weatherInfo?.weatherDataPerDay?.get(0)?.let { data ->
         Column(
             modifier = modifier
@@ -26,7 +27,7 @@ fun WeatherForecast(
                 .padding(horizontal = 16.dp),
 
 
-        ) {
+            ) {
 
             Card(
                 backgroundColor = DeepViolet,
@@ -45,7 +46,7 @@ fun WeatherForecast(
 
                 LazyRow(contentPadding = PaddingValues(40.dp), content = {
                     items(data) { weatherData ->
-                        HourlyWeatherDisplay(
+                        DailyWeatherDisplay(
                             weatherData = weatherData,
                             modifier = Modifier
                                 .height(110.dp)
@@ -56,4 +57,5 @@ fun WeatherForecast(
 
         }
     }
-}
+        
+    }

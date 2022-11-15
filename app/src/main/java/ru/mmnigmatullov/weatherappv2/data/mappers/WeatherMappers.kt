@@ -5,6 +5,7 @@ import ru.mmnigmatullov.weatherappv2.data.remote.WeatherDto
 import ru.mmnigmatullov.weatherappv2.domain.weather.WeatherData
 import ru.mmnigmatullov.weatherappv2.domain.weather.WeatherInfo
 import ru.mmnigmatullov.weatherappv2.domain.weather.WeatherType
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -14,13 +15,17 @@ private data class IndexedWeatherData(
 )
 
 fun WeatherDataDto.toWeatherDataMap(): Map<Int, List<WeatherData>>{
-    return time.mapIndexed{
+    return time.mapIndexed {
         index, time ->
         val temperature = temperatures[index]
         val weatherCode = weatherCodes[index]
         val windSpeed = windSpeeds[index]
         val pressure = pressures[index]
         val humidity = humidities[index]
+        val tempMax = temperatureMax[index]
+        val tempMin = temperatureMin[index]
+
+
         IndexedWeatherData(
             index = index,
             data = WeatherData(
@@ -32,7 +37,10 @@ fun WeatherDataDto.toWeatherDataMap(): Map<Int, List<WeatherData>>{
                 pressure = pressure,
                 windSpeed = windSpeed,
                 humidity = humidity,
-                weatherType = WeatherType.fromWMO(weatherCode)
+                weatherType = WeatherType.fromWMO(weatherCode),
+                tempMax = tempMax,
+                tempMin = tempMin,
+                date = LocalDate.parse(date.toString(), DateTimeFormatter.ISO_DATE)
             )
         )
     }.groupBy {

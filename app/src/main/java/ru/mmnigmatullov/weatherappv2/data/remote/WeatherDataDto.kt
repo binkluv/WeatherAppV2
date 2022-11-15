@@ -4,6 +4,7 @@ import com.squareup.moshi.Json
 
 data class WeatherDataDto(
     val time: List<String>,
+    val date: List<String>,
     @field:Json(name = "temperature_2m")
     val temperatures: List<Double>,
     @field:Json(name = "weathercode")
@@ -13,5 +14,9 @@ data class WeatherDataDto(
     @field:Json(name = "windspeed_10m")
     val windSpeeds: List<Double>,
     @field:Json(name = "relativehumidity_2m")
-    val humidities: List<Double>
+    val humidities: List<Double>,
+    @field:Json(name = "temperature_2m_max")
+    val temperatureMax: List<Double>,
+    @field:Json(name = "temperature_2m_min")
+    val temperatureMin: List<Double>
 )
